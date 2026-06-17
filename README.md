@@ -16,7 +16,7 @@ contract.
 
 ```
 /plugin marketplace add bianzhonglin/prompt-focus
-/plugin install prompt-focus@prompt-focus-marketplace
+/plugin install prompt-focus@prompt-focus
 ```
 
 Then invoke in any session:
@@ -68,7 +68,7 @@ MIT — see [LICENSE](LICENSE).
 
 ```
 /plugin marketplace add bianzhonglin/prompt-focus
-/plugin install prompt-focus@prompt-focus-marketplace
+/plugin install prompt-focus@prompt-focus
 ```
 
 随后在任意会话中调用:
