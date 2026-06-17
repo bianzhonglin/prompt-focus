@@ -1,0 +1,30 @@
+{
+  "name": "prompt-focus-marketplace",
+  "owner": {
+    "name": "Absen-Colin",
+    "url": "https://github.com/bianzhonglin"
+  },
+  "metadata": {
+    "description": "A Claude Code plugin marketplace hosting the prompt-focus skill for reviewing and tightening LLM prompts.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "prompt-focus",
+      "source": "./plugins/prompt-focus",
+      "description": "Review and optimize LLM prompts: focused, unambiguous, contradiction-free, with output contracts preserved.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Absen-Colin"
+      },
+      "keywords": [
+        "prompt",
+        "prompt-engineering",
+        "skill",
+        "review",
+        "optimization"
+      ],
+      "category": "productivity"
+    }
+  ]
+}

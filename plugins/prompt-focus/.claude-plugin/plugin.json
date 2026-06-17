@@ -1,0 +1,18 @@
+{
+  "name": "prompt-focus",
+  "description": "Review and optimize LLM prompts (system/user prompts, instruction templates): make them focused, clear, contradiction-free, with output contracts and hard constraints preserved.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Absen-Colin"
+  },
+  "homepage": "https://github.com/bianzhonglin/prompt-focus-marketplace",
+  "repository": "https://github.com/bianzhonglin/prompt-focus-marketplace",
+  "license": "MIT",
+  "keywords": [
+    "prompt",
+    "prompt-engineering",
+    "review",
+    "optimization",
+    "llm"
+  ]
+}
