@@ -1,7 +1,6 @@
 ---
 name: prompt-focus
 description: Review and optimize an LLM prompt (system/user prompt, instruction template) so it is focused, clear, contradiction-free, and keeps every output contract. Use when the user says "optimize this prompt", "make the prompt focused", "the prompt drifted / is verbose / repeats itself / contradicts the code", or "I edited the prompt, clean it up". Model-agnostic and project-agnostic.
-user-invocable: true
 ---
 
 # Prompt Focus — Review & Optimize LLM Prompts
@@ -13,22 +12,22 @@ narration that does not change its behavior.
 
 Works on any system prompt, user-prompt template, or agent instruction. Model- and project-agnostic.
 
-## When to trigger
+## Scope rules
 
-- The user asks to optimize a specific prompt.
-- After the user edited a prompt and it drifted: got verbose, repeated itself, contradicts itself,
-  carries useless background, diluted a constraint, or pulled in out-of-scope requirements.
-- If the target prompt is unclear, ask which one first. Do not batch-edit prompts unprompted.
+- Optimize only the prompt the user named. If the target is unclear, ask which one first.
+- Do not batch-edit other prompts unprompted.
 
 ## Workflow
 
 1. **Locate + read in full.** Get the entire target prompt.
 2. **Cross-check against ground truth (if a codebase exists).** If the prompt describes the structure
    or allowed values of any field/output, verify it against the real validation logic (schema,
-   validator, parser, downstream consumer). When prompt and code disagree, **the code wins** — fix the
-   prompt. A wrong constraint description makes the model emit invalid output; this is the top priority.
-   For a standalone text prompt with no code, treat the user's stated intent and any given examples as
-   ground truth instead.
+   validator, parser, downstream consumer). **Default: the existing validation logic is the current
+   contract** — when prompt and code disagree, fix the prompt to match the code, because a wrong
+   constraint description makes the model emit invalid output. **Exception:** if the user is explicitly
+   changing the contract (new requirement, not a cleanup), the code may be the old truth — confirm the
+   intended contract with the user, then sync both prompt and code. For a standalone text prompt with no
+   code, treat the user's stated intent and any given examples as ground truth instead.
 3. **Extract the hard-constraint list first** (see Guardrails): output format, field names, enum values,
    allow-lists, count limits, required/default-item rules. This is what must survive verbatim.
 4. **Run the seven-dimension review**, deleting/merging then adding/clarifying. For each deletion ask:
@@ -86,14 +85,12 @@ First four are delete/merge; last three are add/clarify.
   judge success by eye.
 - **Focus is not constraint-cutting**: trim redundant phrasing, not the constraints themselves.
 
-## Authoritative basis
+## Principles
 
-- Write clear instructions, use delimiters, specify the steps and the output length/format, show
-  examples (show & tell), split complex tasks into subtasks, give the model room to think
-  — OpenAI Prompt Engineering Guide.
-- Be clear and direct, use multishot examples, organize with XML/structured tags, assign a role, use
-  chain-of-thought, control the output format, eliminate ambiguity and contradictions
-  — Anthropic Prompt Engineering (prompting best practices).
+Grounded in standard prompt-engineering practice (OpenAI / Anthropic): write clear, direct
+instructions; use delimiters and structured tags; specify steps and exact output format; show examples;
+split complex tasks; eliminate ambiguity and contradictions. Apply these to *tighten* the prompt — do
+not add reasoning scaffolding (e.g. chain-of-thought) the task did not already call for.
 
 ## Verification
 

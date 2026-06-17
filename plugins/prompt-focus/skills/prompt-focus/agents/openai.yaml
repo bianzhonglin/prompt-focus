@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt Focus"
+  short_description: "Review and tighten LLM prompts without losing hard constraints."
+  default_prompt: "Use $prompt-focus to optimize this prompt while preserving its output contract."
